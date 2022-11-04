@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon</title>
-    <link rel="stylesheet" type="text/css" href="styles/index.css" />
-</head>
+<?php
+session_start();
+// Register the autoloader
+spl_autoload_register(function($classname) {
+    include "classes/$classname.php";
+});
 
-<body>
-    <div class = "upper">
-        <h1>
-            Pokemon
-        </h1>
-    </div>
-    <div class = "lower">
-        <p>
-            Get to know these pokemons!
-        </p>
-        <a class = "login">Login</a>
-    </div>
-</body>
-</html>
+// Parse the query string for command
+$command = "index";
+if (isset($_GET["command"]))
+    $command = $_GET["command"];
+
+// If the user's email is not set in the cookies, then it's not
+// a valid session (they didn't get here from the login page),
+// so we should send them over to log in first before doing
+// anything else!
+//if (!isset($_COOKIE["email"])) {
+    // they need to see the login
+ //   $command = "login";
+//}
+// Instantiate the controller and run
+$start = new Handler($command);
+$start->run();

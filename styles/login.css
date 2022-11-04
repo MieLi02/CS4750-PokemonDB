@@ -1,0 +1,48 @@
+
+.login{
+    position:relative;
+    top:50px;
+    flex:1;
+    float:left;
+    width:50%;
+    padding-left:30px;
+    padding-right:30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    line-height: 70px;
+    border:1px solid black;
+    margin: 50px;
+}
+
+.signup{
+    position:relative;
+    top:50px;
+    flex:1;
+    float:left;
+    width:50%;
+    padding-left:30px;
+    padding-right:30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    line-height: 70px;
+    border:1px solid black;
+    margin: 50px;
+}
+
+.flex-container{
+    display: flex;
+}
+
+button{
+    font-size: x-large;
+}
+
+@media only screen and (max-width: 768px) {
+    .flex-container{
+        flex-direction: column;
+    }
+}
+
+input:invalid {
+    border: 2px solid red;
+}
