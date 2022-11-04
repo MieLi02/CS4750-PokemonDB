@@ -94,13 +94,16 @@ class Handler {
     }
 
     private function search() {
-        if (isset($_POST["id"])){
+        if (isset($_POST["id"]) && !empty($_POST["id"])) {        
             $pokemon = getPokemonById($_POST["id"]);
-        }else{
+        }
+        elseif (isset($_POST["name"]) && !empty($_POST["name"])) {
+            $pokemon = getPokemonByName($_POST["name"]);
+        }
+        else {
             $pokemon = getPokemonById(1);
             $pokemon_json = json_encode($pokemon);
         }
         include("views/search.php");
-    }
-    
+    }  
 }
