@@ -1,4 +1,5 @@
 <?php
+require "connect_database.php";
 function addPokemon($id, $name, $generation, $appearanceCategory, $type)
 {
     global $db;

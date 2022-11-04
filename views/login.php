@@ -35,7 +35,7 @@
                     </h1>
                     <br>
                     <label for="Email" style = "font-size: 30px">E-mail:</label>
-                    <input type="text" id="Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                     <br>
                     <label for="Password" style = "font-size: 30px">Password:</label>
                     <input type="password" id="password" name="password">

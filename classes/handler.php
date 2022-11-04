@@ -4,7 +4,6 @@ require "pokemon_db.php";
 
 class Handler {
     private $command;
-
     
     private $logger;
 
@@ -17,6 +16,9 @@ class Handler {
             $this->index();
         }else{
         switch($_GET['command']) {
+            case "search":
+                $this->search();
+                break;
             case "login":
                 $this -> login();
                 break;
@@ -35,23 +37,21 @@ class Handler {
     }
 
     private function login() {
-        include("views/login.php");
         if (isset($_POST["email"])) {
-            $data = $this->db->query("select * from recipick_user where email = ?;", "s", $_POST["email"]);
-            $data_json = json_encode($data);
-            if ($data === false) {
+            $input_email = $_POST["email"];
+            $data = $db->query("SELECT Email FROM User where Email = ?;", "s", $_POST["email"]);
+            echo $data;
+            //$get_email = getUserEmail($input_email);
+            //$get_password = getUserPassword($input_email);
+            if ($get_email === false) {
                 $error_msg = "Error checking for user";
             }
             else if ( ($_POST["email"] == "") || ($_POST["password"] == "") ){
                 $error_msg = "Don't leave login fields blank";
             }
             else if (!empty($data)) {
-                if (password_verify($_POST["password"], $data[0]["password"])) {
-                    session_start();
-                    $_SESSION["name"] =  $data[0]["name"];
-                    $_SESSION["email"] =  $data[0]["email"];
-                    $_SESSION["id"] = $data[0]["id"];
-                    header("Location: ?command=home");
+                if ($_POST["password"] == $data[0]["Password"]) {
+                    header("Location: ?command=search");
                 } else {
                     $error_msg = "Wrong password";
                 }
@@ -59,13 +59,12 @@ class Handler {
                 $error_msg = "User not found";
             }
         }
-        include("login.php");
+        include("views/login.php");
     }
 
     private function signup() {
         if (isset($_POST["email"])) {
-            $data = $this->db->query("select * from recipick_user where email = ?;", "s", $_POST["email"]);
-            $data_json = json_encode($data);
+            $data = $db->query("select * from recipick_user where email = ?;", "s", $_POST["email"]);
             if ($data === false) {
                 $error_msg = "Error checking for user";
             }
@@ -91,6 +90,10 @@ class Handler {
             }
         }
         include("login.php");
+    }
+
+    private function search() {
+        include("views/search.php");
     }
     
 }
