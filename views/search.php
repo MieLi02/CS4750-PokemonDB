@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="styles/search.css">
     </head> 
     <body>
+        <?php
+            require "./classes/connect_database.php";
+        ?>
         <header>
             <nav>
                 <a>Pokemon</a>

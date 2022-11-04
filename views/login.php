@@ -15,7 +15,9 @@
 	crossorigin="anonymous">
 </script>
         <body>
-        
+            <?php
+                require "./classes/connect_database.php";
+            ?>
             <header>
                 <nav>
                 <h1 style = "font-size: 60px;display:inline-block">
@@ -23,6 +25,7 @@
                 </h1>
                 </nav>
             </header>
+
             <div class = "flex-container">
                 <?php
                     if (!empty($error_msg)) {

@@ -18,7 +18,12 @@
         <p>
             Get to know these pokemons!
         </p>
-        <a href="?command=login" class = "login">Login</a>
+        <a href="?command=login" class = "login">
+            Login
+        </a>
+    </div>
+    <div>
+        
     </div>
 </body>
 </html>
