@@ -35,4 +35,25 @@ function getPokemonByName($name)
     return $result;
 }
 
+function getUserEmail($email)
+{
+    global $db;
+    $query = "SELECT Email FROM User where Email = :email";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function getUserPassword($email)
+{
+    global $db;
+    $query = "SELECT Password FROM User where Email = :email";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
 ?>
