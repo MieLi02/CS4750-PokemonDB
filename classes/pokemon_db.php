@@ -16,8 +16,13 @@ function addPokemon($id, $name, $generation, $appearanceCategory, $type)
 
 function getPokemonById($id)
 {
-    global $db;
-    $query = "SELECT * FROM Pokemon WHERE Pid = :id";
+    $username = 'yl2nr';
+    $password = '010717';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "SELECT * FROM Pokemon WHERE Pid = '$id'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
@@ -38,8 +43,13 @@ function getPokemonByName($name)
 
 function getUserEmail($email)
 {
-    global $db;
-    $query = "SELECT Email FROM User where Email = :email";
+    $username = 'yl2nr';
+    $password = '010717';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "SELECT * FROM User where Email = '$email'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
@@ -49,8 +59,13 @@ function getUserEmail($email)
 
 function getUserPassword($email)
 {
-    global $db;
-    $query = "SELECT Password FROM User where Email = :email";
+    $username = 'yl2nr';
+    $password = '010717';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "SELECT * FROM User where Email = '$email'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();

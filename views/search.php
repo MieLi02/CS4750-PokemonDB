@@ -23,11 +23,11 @@
         <form class = "search" action="?command=search" method="post">
             <label for="recipename"> Search Pokemons by Name:</label>
             <br>
-            <input type="text" id="recipename" placeholder="Enter Name">
+            <input type="text" id="name" name = "name" placeholder="Enter Name">
             <br>
             <label for="recipeingredients"> Search Pokemons by Index:</label>
             <br>
-            <input type="text" id="recipeingredients" placeholder="Enter Index">
+            <input type="text" id="id" name = "id" placeholder="Enter Index">
             <br>
             <label for="fav"> Only search favorites?</label>
             <input type="checkbox" id="fav" name="fav" value="Favorite">
@@ -36,15 +36,30 @@
             </button>
         <br>
         <br>
-        <table>
-            <tr>
-                <th>&nbsp; Pokemon Id &nbsp;</th>
-                <th>&nbsp; Pokemon Name &nbsp;</th>
-                <th>&nbsp; Generation Number &nbsp;</th>
-                <th>&nbsp; Apperance Category &nbsp;</th>
-                <th> Type </th>
-            </tr>
-        </table>
+        <?php
+            if (!empty($error_msg)) {
+                echo "<div class='alert alert-danger'>$error_msg</div>";
+            }else{
+                echo "<table class = 'table'>
+                <tr>
+                <th>Pokemon Id</th>
+                <th>Pokemon Name</th>
+                <th>Genereation</th>
+                <th>Apperance</th>
+                <th>Type</th>
+                </tr>";              
+                foreach ($pokemon as $p){
+                    echo "<tr>";
+                    echo "<td style='text-align:center;'>" . $p["Pid"] . "</td>";
+                    echo "<td style='text-align:center;'>" . $p["Name"] . "</td>";
+                    echo "<td style='text-align:center;'>" . $p["Generation"] . "</td>";
+                    echo "<td style='text-align:center;'>" . $p["appearance_category"] . "</td>";
+                    echo "<td style='text-align:center;'>" . $p["Type_name"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            }
+        ?>
         <hr>
     </body>
 </html>

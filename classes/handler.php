@@ -39,23 +39,24 @@ class Handler {
     private function login() {
         if (isset($_POST["email"])) {
             $input_email = $_POST["email"];
-            $data = $db->query("SELECT Email FROM User where Email = ?;", "s", $_POST["email"]);
-            echo $data;
-            //$get_email = getUserEmail($input_email);
-            //$get_password = getUserPassword($input_email);
+            $get_email = getUserEmail($input_email)[0]["Email"];
+            $get_email_json = json_encode($get_email);
+            echo $get_email_json;
+            $get_password = getUserPassword($input_email)[0]["Password"];
+            echo $get_email;
             if ($get_email === false) {
                 $error_msg = "Error checking for user";
             }
             else if ( ($_POST["email"] == "") || ($_POST["password"] == "") ){
                 $error_msg = "Don't leave login fields blank";
             }
-            else if (!empty($data)) {
-                if ($_POST["password"] == $data[0]["Password"]) {
+            else if (!empty($_POST["email"]) && !empty($_POST["password"])) {
+                if ($_POST["password"] == $get_password) {
                     header("Location: ?command=search");
                 } else {
                     $error_msg = "Wrong password";
                 }
-            } else { // empty, no user found
+            } else {
                 $error_msg = "User not found";
             }
         }
@@ -93,6 +94,12 @@ class Handler {
     }
 
     private function search() {
+        if (isset($_POST["id"])){
+            $pokemon = getPokemonById($_POST["id"]);
+        }else{
+            $pokemon = getPokemonById(1);
+            $pokemon_json = json_encode($pokemon);
+        }
         include("views/search.php");
     }
     
