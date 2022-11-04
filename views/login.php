@@ -5,9 +5,6 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1"> 
             <title>Login</title>
-            <meta name="author" content="Sky Chen/Da Lin">
-            <meta name="description" content="recipes">
-            <meta name="keywords" content="food">
             <link rel="stylesheet" href="styles/main.css">
             <link rel="stylesheet" href="styles/login.css">
         </head> 

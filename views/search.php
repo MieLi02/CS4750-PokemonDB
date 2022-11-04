@@ -5,8 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <title>Search</title>
-        <meta name="description" content="A place to find recipes that work for you.">
-        <meta name="keywords" content="food">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/search.css">
     </head> 
