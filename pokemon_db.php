@@ -23,4 +23,16 @@ function getPokemonById($id)
     $statement->closeCursor();
     return $result;
 }
+
+function getPokemonByName($name)
+{
+    global $db;
+    $query = "SELECT * FROM Pokemon WHERE name = :name";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
 ?>
