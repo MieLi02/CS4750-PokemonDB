@@ -12,4 +12,15 @@ function addPokemon($id, $name, $generation, $appearanceCategory, $type)
     $statement->execute();
     $statement->closeCursor();
 }
+
+function getPokemonById($id)
+{
+    global $db;
+    $query = "SELECT * FROM Pokemon WHERE Pid = :id";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
 ?>
