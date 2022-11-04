@@ -2,8 +2,13 @@
 require "connect_database.php";
 function addPokemon($id, $name, $generation, $appearanceCategory, $type)
 {
-    global $db;
-    $query = "INSERT INTO Pokemon VALUES (:id, :name, :generation, :appearanceCategory, :type)";
+    $username = 'yl2nr';
+    $password = '010717';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "INSERT INTO Pokemon VALUES ('$id', '$name', '$generation', '$appearanceCategory', '$type')";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':name', $name);

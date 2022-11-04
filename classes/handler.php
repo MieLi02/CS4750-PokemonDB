@@ -25,6 +25,9 @@ class Handler {
             case "signup":
                 $this -> signup();
                 break;
+            case "add":
+                $this->add();
+                break;
             default:
                 $this -> index();
                 break;
@@ -106,4 +109,14 @@ class Handler {
         }
         include("views/search.php");
     }  
+
+    private function add() {
+        if (isset($_POST["pid"]) && isset($_POST["pname"]) &&
+         isset($_POST["generation"]) && isset($_POST["appearance"]) &&
+         isset($_POST["type"])) {
+            addPokemon($_POST["pid"], $_POST["pname"], $_POST["generation"], $_POST["appearance"], $_POST["type"]);
+            $addedPokemonName = $_POST["pname"];
+        }
+        include("views/add.php");
+    }
 }

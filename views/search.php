@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <title>Search</title>
-        <meta name="author" content="Sky Chen/Da Lin">
         <meta name="description" content="A place to find recipes that work for you.">
         <meta name="keywords" content="food">
         <link rel="stylesheet" href="styles/main.css">
@@ -19,26 +18,25 @@
             <nav>
                 <a>Pokemon</a>
                 <a>Search</a>
-                <a>Favorite</a>
+                <a href="?command=add">Add</a>
                 <a>Profile</a>
             </nav>
         </header>
         <form class = "search" action="?command=search" method="post">
-            <label for="recipename"> Search Pokemons by Name:</label>
+            <label> Search Pokemons by Name:</label>
             <br>
             <input type="text" id="name" name = "name" placeholder="Enter Name">
             <br>
-            <label for="recipeingredients"> Search Pokemons by Index:</label>
+            <label> Search Pokemons by Index:</label>
             <br>
             <input type="text" id="id" name = "id" placeholder="Enter Index">
             <br>
             <label for="fav"> Only search favorites?</label>
             <input type="checkbox" id="fav" name="fav" value="Favorite">
-            <button type="submit" style="margin-left: 10px;">
+            <button type="submit" style="margin-left: 10px;" value="search">
                 Search                  
             </button>
-        <br>
-        <br>
+        </form>
         <?php
             if (!empty($error_msg)) {
                 echo "<div class='alert alert-danger'>$error_msg</div>";
@@ -64,5 +62,6 @@
             }
         ?>
         <hr>
+        
     </body>
 </html>
