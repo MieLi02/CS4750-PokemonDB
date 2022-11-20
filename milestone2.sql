@@ -63,10 +63,9 @@ SELECT Pokemon.Pid, Pokemon.Name, sname AS "Skill", Power
 FROM Pokemon NATURAL JOIN Has_Skill NATURAL JOIN Skills
 WHERE Pokemon.Pid = 1 OR Pokemon.Name = Pikachu;
 
-SET @afterid = (SELECT After_pid FROM Evolve WHERE Previous_pid = 1);
-SELECT P1.Name as "Original", P2.Name as "Evolved"
+SELECT P1.Name as Original, P2.Name as Evolved
 FROM Pokemon as P1, Pokemon as P2
-WHERE P1.Pid = 1 AND P2.Pid = @afterid;
+WHERE P1.Pid = 1 AND P2.Pid = (SELECT After_pid FROM Evolve WHERE Previous_pid = 1);
 
 # Add Data - add a new pokemon (pichu)
 
