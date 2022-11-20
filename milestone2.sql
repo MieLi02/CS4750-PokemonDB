@@ -23,6 +23,10 @@ CREATE TABLE Has_Favorite (uid INT REFERENCES Users(uid),Pid INT REFERENCES Poke
 
 CREATE TABLE Evolve (Previous_pid INT REFERENCES Pokemon(Pid),After_pid INT REFERENCES Pokemon(pid));
 
+# Grant Access
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON yl2br_d.* TO 'yl2nr_a'@'%';
+
 # Add Constraints
 
 ALTER TABLE Pokemon ADD CONSTRAINT Type_name FOREIGN KEY(Type_name) REFERENCES Types(tname) ON DELETE CASCADE;
@@ -75,3 +79,12 @@ DELETE FROM Pokemon WHERE Pokemon.Pid = 1
 # Update Data
 
 UPDATE Pokemon SET Name = :newName WHERE Pokemon.Pid = 1;
+
+# Filter Data By type
+SELECT * FROM Pokemon NATURAL JOIN Has_Skill WHERE Pokemon.Type_name = :type;
+
+# Filter Data By generation
+SELECT * FROM Pokemon NATURAL JOIN Has_Skill WHERE Pokemon.Generation = :generation;
+
+# Filter Data By appearance appearance_category
+SELECT * FROM Pokemon NATURAL JOIN Has_Skill WHERE Pokemon.appearance_category = :category;
