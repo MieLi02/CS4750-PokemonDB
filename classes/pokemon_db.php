@@ -2,8 +2,8 @@
 require "connect_database.php";
 function addPokemon($id, $name, $generation, $appearanceCategory, $type)
 {
-    $username = 'yl2nr';
-    $password = '010717';
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
     $host = 'mysql01.cs.virginia.edu';
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
@@ -21,8 +21,8 @@ function addPokemon($id, $name, $generation, $appearanceCategory, $type)
 
 function getPokemonById($id)
 {
-    $username = 'yl2nr';
-    $password = '010717';
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
     $host = 'mysql01.cs.virginia.edu';
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
@@ -37,8 +37,8 @@ function getPokemonById($id)
 
 function getPokemonByName($name)
 {
-    $username = 'yl2nr';
-    $password = '010717';
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
     $host = 'mysql01.cs.virginia.edu';
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
@@ -53,8 +53,8 @@ function getPokemonByName($name)
 
 function getUserEmail($email)
 {
-    $username = 'yl2nr';
-    $password = '010717';
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
     $host = 'mysql01.cs.virginia.edu';
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
@@ -69,8 +69,8 @@ function getUserEmail($email)
 
 function getUserPassword($email)
 {
-    $username = 'yl2nr';
-    $password = '010717';
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
     $host = 'mysql01.cs.virginia.edu';
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
