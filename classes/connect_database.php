@@ -17,8 +17,8 @@
 // $password = 'your-root-password';
 // $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo';
 /** F22, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
- $username = 'yl2nr';
- $password = '010717';
+ $username = 'yl2nr_a';
+ $password = 'Fall2022';
  $host = 'mysql01.cs.virginia.edu';
  $dbname = 'yl2nr_d';
  $dsn = "mysql:host=$host;dbname=$dbname";
