@@ -19,6 +19,21 @@ function addPokemon($id, $name, $generation, $appearanceCategory, $type)
     $statement->closeCursor();
 }
 
+function deletePokemonById($id)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "DELETE FROM Pokemon WHERE Pokemon.Pid = '$id'";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 function updatePokemonType($id,$type)
 {
     $username = 'yl2nr_a';
