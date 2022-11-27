@@ -34,6 +34,18 @@ ALTER TABLE Pokemon ADD CONSTRAINT Type_name FOREIGN KEY(Type_name) REFERENCES T
 # Add Trigger
 
 DELIMITER $$
+CREATE TRIGGER PokemonInsertionTrigger
+BEFORE INSERT ON Pokemon
+FOR EACH ROW
+BEGIN
+  IF new.Type_name NOT IN (SELECT * FROM Types) THEN
+    SET new.Type_name = "Grass";
+  END IF;
+END
+$$
+DELIMITER ;
+
+DELIMITER $$
 CREATE TRIGGER PokemonTrigger
 BEFORE INSERT ON Skills
 FOR EACH ROW
