@@ -25,7 +25,7 @@ CREATE TABLE Evolve (Previous_pid INT REFERENCES Pokemon(Pid),After_pid INT REFE
 
 # Grant Access
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON yl2br_d.* TO 'yl2nr_a'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON yl2nr_d.* TO 'yl2nr_a'@'%';
 
 # Add Constraints
 
