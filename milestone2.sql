@@ -83,6 +83,10 @@ WHERE P1.Pid = 1 AND P2.Pid = (SELECT After_pid FROM Evolve WHERE Previous_pid =
 
 INSERT INTO Pokemon (Pid, Name, Generation, appearance_category, Type_name) VALUES ('172', 'pichu', '2', 'Mouse', 'Electric');
 
+INSERT INTO Skills (sname, Power) VALUES ($sname,$power);
+
+INSERT INTO Has_Skill (Pid, sname) VALUES ($Pid, $sname);
+
 # Delete Data
 
 DELETE FROM Pokemon WHERE Pokemon.Pid = 1
