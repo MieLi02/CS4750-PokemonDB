@@ -43,7 +43,7 @@ function linkPokemonSkill($id, $sname)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "INSERT INTO Has_Skill VALUES ('$Pid', '$sname')";
+    $query = "INSERT INTO Has_Skill VALUES ('$id', '$sname')";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':sname', $sname);
@@ -51,6 +51,21 @@ function linkPokemonSkill($id, $sname)
     $statement->closeCursor();
 }
 
+function addToFavorite($email, $id)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "INSERT INTO Has_Favorite VALUES ('$id', '$email')";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $statement->closeCursor();
+}
 
 function deletePokemonById($id)
 {
@@ -92,6 +107,22 @@ function getPokemonById($id)
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
     $query = "SELECT * FROM Pokemon WHERE Pid = '$id'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function getFavorite($email)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "SELECT Has_Favorite.Pid, Pokemon.Name FROM Has_Favorite NATURAL JOIN Pokemon WHERE Has_Favorite.Email = '$email'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
