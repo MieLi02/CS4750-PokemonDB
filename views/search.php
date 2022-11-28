@@ -16,7 +16,7 @@
     ?>
     <nav class="navbar navbar-expand-lg bg-danger">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Pokemon</a>
+            <a class="navbar-brand" href="#">Pokémon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-6">
             <div class="container">
-                <h1>Search Pokemon from Our Database!</h1>
+                <h1>Search Pokémon from Our Database!</h1>
             </div>
             <div class="container">
                 <form action="?command=search" method="POST">
