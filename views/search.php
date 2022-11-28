@@ -39,10 +39,11 @@
 </head>
 
 <body>
+    <br>
     <div class="row">
         <div class="col-6">
             <div class="container">
-                <h1>Search Any Pokemon from Our Database!</h1>
+                <h1>Search Pokemon from Our Database!</h1>
             </div>
             <div class="container">
                 <form action="?command=search" method="POST">
@@ -52,7 +53,9 @@
                     <div class="mb-3">
                         <input type="text" class="form-control" id="id" name="id" placeholder="Pokemon ID">
                     </div>
-                    <button type="submit" class="btn btn-primary">Search By Either Name or ID</button>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Search By Either Name or ID</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -67,15 +70,15 @@
         <div class="col-6">
             <div class="card mx-auto" style="width: 18rem;">
                 <?php
-            if ((int) $p["Pid"] == 1) {
-                $pokemonPicNum = '001';
-            } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
-                $pokemonPicNum = '00' . $p["Pid"];
-            } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
-                $pokemonPicNum = '0' . $p["Pid"];
-            }
-            $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
-            ?>
+                if ((int) $p["Pid"] == 1) {
+                    $pokemonPicNum = '001';
+                } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
+                    $pokemonPicNum = '00' . $p["Pid"];
+                } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
+                    $pokemonPicNum = '0' . $p["Pid"];
+                }
+                $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
+                ?>
                 <img src="<?php echo $pokemonPic ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
