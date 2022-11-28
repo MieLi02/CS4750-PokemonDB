@@ -39,61 +39,67 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Search Any Pokemon from Our Database!</h1>
-    </div>
-    <div class="container">
-        <form action="?command=search" method="POST">
-            <div class="mb-3">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Pokemon Name">
+    <div class="row">
+        <div class="col-6">
+            <div class="container">
+                <h1>Search Any Pokemon from Our Database!</h1>
             </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="id" name="id" placeholder="Pokemon ID">
+            <div class="container">
+                <form action="?command=search" method="POST">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Pokemon Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Pokemon ID">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search By Either Name or ID</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Search By Either Name or ID</button>
-        </form>
-    </div>
-
-    <?php
-    if (!empty($error_msg)) {
-        echo "<div class='alert alert-danger'>$error_msg</div>";
-    } else {
-        foreach ($pokemon as $p) {
-        }
-    }
-    ?>
-    <hr>
-    <div class="card mx-auto" style="width: 18rem;">
-        <?php
-        if ((int) $p["Pid"] == 1) {
-            $pokemonPicNum = '001';
-        } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
-            $pokemonPicNum = '00' . $p["Pid"];
-        } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
-            $pokemonPicNum = '0' . $p["Pid"];
-        }
-        $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
-        ?>
-        <img src="<?php echo $pokemonPic ?>" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">
-                <?php echo $p["Name"] ?>
-            </h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:
-                    <?php echo $p["Pid"] ?>
-                </li>
-                <li class="list-group-item">Generation:
-                    <?php echo $p["Generation"] ?>
-                </li>
-                <li class="list-group-item">Apperance:
-                    <?php echo $p["appearance_category"] ?>
-                </li>
-                <li class="list-group-item">Type:
-                    <?php echo $p["Type_name"] ?>
-                </li>
-            </ul>
         </div>
+        <?php
+        if (!empty($error_msg)) {
+            echo "<div class='alert alert-danger'>$error_msg</div>";
+        } else {
+            foreach ($pokemon as $p) {
+            }
+        }
+        ?>
+        <div class="col-6">
+            <div class="card mx-auto" style="width: 18rem;">
+                <?php
+            if ((int) $p["Pid"] == 1) {
+                $pokemonPicNum = '001';
+            } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
+                $pokemonPicNum = '00' . $p["Pid"];
+            } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
+                $pokemonPicNum = '0' . $p["Pid"];
+            }
+            $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
+            ?>
+                <img src="<?php echo $pokemonPic ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php echo $p["Name"] ?>
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID:
+                            <?php echo $p["Pid"] ?>
+                        </li>
+                        <li class="list-group-item">Generation:
+                            <?php echo $p["Generation"] ?>
+                        </li>
+                        <li class="list-group-item">Apperance:
+                            <?php echo $p["appearance_category"] ?>
+                        </li>
+                        <li class="list-group-item">Type:
+                            <?php echo $p["Type_name"] ?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
