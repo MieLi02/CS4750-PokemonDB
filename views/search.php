@@ -10,9 +10,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/search.css"> -->
-</head>
 
-<body>
     <?php
     require "./classes/connect_database.php";
     ?>
@@ -38,53 +36,66 @@
             </div>
         </div>
     </nav>
-    <!-- <nav>
-                <a>Pokemon</a>
-                <a>Search</a>
-                <a href="?command=add">Add</a>
-                <a>Profile</a>
-            </nav> -->
+</head>
 
-    <form class="search" action="?command=search" method="post">
-        <label> Search Pokemons by Name:</label>
-        <br>
-        <input type="text" id="name" name="name" placeholder="Enter Name">
-        <br>
-        <label> Search Pokemons by Index:</label>
-        <br>
-        <input type="text" id="id" name="id" placeholder="Enter Index">
-        <br>
-        <label for="fav"> Only search favorites?</label>
-        <input type="checkbox" id="fav" name="fav" value="Favorite">
-        <button type="submit" style="margin-left: 10px;" value="search">
-            Search
-        </button>
-    </form>
+<body>
+    <div class="container">
+        <h1>Search Any Pokemon from Our Database!</h1>
+    </div>
+    <div class="container">
+        <form action="?command=search" method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Pokemon Name">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="id" name="id" placeholder="Pokemon ID">
+            </div>
+            <button type="submit" class="btn btn-primary">Search By Either Name or ID</button>
+        </form>
+    </div>
+
     <?php
     if (!empty($error_msg)) {
         echo "<div class='alert alert-danger'>$error_msg</div>";
     } else {
-        echo "<table class = 'table'>
-                <tr>
-                <th>Pokemon Id</th>
-                <th>Pokemon Name</th>
-                <th>Genereation</th>
-                <th>Apperance</th>
-                <th>Type</th>
-                </tr>";
         foreach ($pokemon as $p) {
-            echo "<tr>";
-            echo "<td style='text-align:center;'>" . $p["Pid"] . "</td>";
-            echo "<td style='text-align:center;'>" . $p["Name"] . "</td>";
-            echo "<td style='text-align:center;'>" . $p["Generation"] . "</td>";
-            echo "<td style='text-align:center;'>" . $p["appearance_category"] . "</td>";
-            echo "<td style='text-align:center;'>" . $p["Type_name"] . "</td>";
-            echo "</tr>";
         }
-        echo "</table>";
     }
     ?>
     <hr>
+    <div class="card mx-auto" style="width: 18rem;">
+        <?php
+        if ((int) $p["Pid"] == 1) {
+            $pokemonPicNum = '001';
+        } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
+            $pokemonPicNum = '00' . $p["Pid"];
+        } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
+            $pokemonPicNum = '0' . $p["Pid"];
+        }
+        $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
+        ?>
+        <img src="<?php echo $pokemonPic ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">
+                <?php echo $p["Name"] ?>
+            </h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID:
+                    <?php echo $p["Pid"] ?>
+                </li>
+                <li class="list-group-item">Generation:
+                    <?php echo $p["Generation"] ?>
+                </li>
+                <li class="list-group-item">Apperance:
+                    <?php echo $p["appearance_category"] ?>
+                </li>
+                <li class="list-group-item">Type:
+                    <?php echo $p["Type_name"] ?>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
