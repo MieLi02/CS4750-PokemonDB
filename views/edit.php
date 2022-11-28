@@ -24,10 +24,10 @@
                         <a class="nav-link" href="?command=search">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="?command=add">Add</a>
+                        <a class="nav-link" href="?command=add">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Edit</a>
+                        <a class="nav-link active" aria-current="page">Edit</a>
                     </li>
 
                 </ul>
@@ -37,13 +37,10 @@
             </div>
         </div>
     </nav>
-
     <br>
     <div class="container">
-        <h1>Add a New Pokémon!</h1>
+        <h1>Update Pokemon Information</h1>
     </div>
-
-
     <div class="container">
         <form action="?command=add" method="POST">
             <div class="mb-3">
@@ -94,7 +91,7 @@
                     <option value="3">Generation III</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-danger">Create</button>
+            <button type="submit" class="btn btn-info">Update</button>
         </form>
     </div>
     <!-- <?php
