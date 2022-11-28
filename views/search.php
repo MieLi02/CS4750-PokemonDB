@@ -30,9 +30,13 @@
                         <a class="nav-link" href="?command=add">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">User Profile</a>
+                        <a class="nav-link disabled">Edit</a>
                     </li>
+
                 </ul>
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#">User Profile</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -59,45 +63,44 @@
                 </form>
             </div>
         </div>
-        <?php
-        if (!empty($error_msg)) {
-            echo "<div class='alert alert-danger'>$error_msg</div>";
-        } else {
-            foreach ($pokemon as $p) {
-            }
-        }
-        ?>
         <div class="col-6">
             <div class="card mx-auto" style="width: 18rem;">
                 <?php
-                if ((int) $p["Pid"] == 1) {
+                if ((int) $pokemon[0]["Pid"] == 1) {
                     $pokemonPicNum = '001';
-                } elseif ((int) $p["Pid"] > 0 and (int) $p["Pid"] < 10) {
-                    $pokemonPicNum = '00' . $p["Pid"];
-                } elseif ((int) $p["Pid"] > 9 and (int) $p["Pid"] < 100) {
-                    $pokemonPicNum = '0' . $p["Pid"];
+                } elseif ((int) $pokemon[0]["Pid"] > 0 and (int) $pokemon[0]["Pid"] < 10) {
+                    $pokemonPicNum = '00' . $pokemon[0]["Pid"];
+                } elseif ((int) $pokemon[0]["Pid"] > 9 and (int) $pokemon[0]["Pid"] < 100) {
+                    $pokemonPicNum = '0' . $pokemon[0]["Pid"];
                 }
                 $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
                 ?>
                 <img src="<?php echo $pokemonPic ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <?php echo $p["Name"] ?>
+                        <?php echo $pokemon[0]["Name"] ?>
                     </h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID:
-                            <?php echo $p["Pid"] ?>
-                        </li>
-                        <li class="list-group-item">Generation:
-                            <?php echo $p["Generation"] ?>
-                        </li>
-                        <li class="list-group-item">Apperance:
-                            <?php echo $p["appearance_category"] ?>
-                        </li>
-                        <li class="list-group-item">Type:
-                            <?php echo $p["Type_name"] ?>
-                        </li>
-                    </ul>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID:
+                        <?php echo $pokemon[0]["Pid"] ?>
+                    </li>
+                    <li class="list-group-item">Generation:
+                        <?php echo $pokemon[0]["Generation"] ?>
+                    </li>
+                    <li class="list-group-item">Apperance:
+                        <?php echo $pokemon[0]["appearance_category"] ?>
+                    </li>
+                    <li class="list-group-item">Type:
+                        <?php echo $pokemon[0]["Type_name"] ?>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="?command=edit" class="card-link btn btn-info">Edit</a>
+                    <form class="d-inline" action="" method="POST">
+                        <input type="hidden" name="pid" id="pid" value=<?php echo $pokemon[0]["Pid"] ?>>
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

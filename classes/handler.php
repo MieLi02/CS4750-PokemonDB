@@ -28,6 +28,9 @@ class Handler {
             case "add":
                 $this->add();
                 break;
+            case "edit":
+                $this->edit();
+                break;
             default:
                 $this -> index();
                 break;
@@ -124,5 +127,9 @@ class Handler {
             $addedPokemonName = $_POST["pname"];
         }
         include("views/add.php");
+    }
+
+    private function edit() {
+        include("views/edit.php");
     }
 }
