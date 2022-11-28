@@ -72,7 +72,6 @@
                     <option value="Fairy">Fairy</option>
                     <option value="Fighting">Fighting</option>
                     <option value="Fire">Fire</option>
-                    <option value="Fire">Fire</option>
                     <option value="Flying">Flying</option>
                     <option value="Ghost">Ghost</option>
                     <option value="Grass">Grass</option>

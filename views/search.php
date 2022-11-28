@@ -97,7 +97,7 @@
                 </ul>
                 <div class="card-body">
                     <a href="?command=edit" class="card-link btn btn-info">Edit</a>
-                    <form class="d-inline" action="" method="POST">
+                    <form class="d-inline" action="?command=delete" method="POST">
                         <input type="hidden" name="pid" id="pid" value=<?php echo $pokemon[0]["Pid"] ?>>
                         <button class="btn btn-danger">Delete</button>
                     </form>
