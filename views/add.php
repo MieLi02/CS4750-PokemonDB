@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>Document</title>
 </head>
+
 <body>
-<label>Add a new Pokemon</label>
-        <br>
-        <form class="add" action="?command=add" method="POST">
-            <label for="pid">id</label>
-            <input type="text" id="pid" name = "pid" placeholder="Enter Pokemon ID">
-            <br>
-            <label for="pname">name</label>
-            <input type="text" id="pname" name = "pname" placeholder="Enter Pokemon Name">
-            <br>
-            <label for="generation">generation</label>
-            <input type="text" id="generation" name = "generation" placeholder="Enter Generation">
-            <br>
-            <label for="appearance">appearance</label>
-            <input type="text" id="appearance" name = "appearance" placeholder="Enter appearance">
-            <br>
-            <label for="type">type</label>
-            <input type="text" id="type" name = "type" placeholder="Enter type">
-            <br>
-            <button type="submit" style="margin-left: 10px;">
-                Add                  
+    <nav class="navbar navbar-expand-lg bg-danger">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Pokemon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?command=search">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="?command=add">Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">User Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <label>Add a new Pokemon</label>
+    <br>
+
+
+
+    <div class="container">
+        <form action="?command=add" method="POST">
+            <div class="mb-3">
+                <label for="pid" class="form-label">ID</label>
+                <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter Pokemon ID"
+                    aria-describedb="idHelp">
+                <div id="idHelp" class="form-text">Each Pokemon has its unique ID!</div>
+            </div>
+            <div class="mb-3">
+                <label for="pname" class="form-label">Name</label>
+                <input type="text" class="form-control" id="pname" name="pname" placeholder="Enter Pokemon Name">
+            </div>
+            <div class="mb-3">
+                <label for="appearance" class="form-label">Appearance</label>
+                <input type="text" class="form-control" id="appearance" name="appearance" placeholder="Enter appearance"
+                    aria-describedby="appHelp">
+                <div id="appHelp" class="form-text">What species is it? Is it a Dog?</div>
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example" name=type id=type>
+                    <option selected>Select Pokemon's Type</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Dark">Dark</option>
+                    <option value="Dragon">Dragon</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Fairy">Fairy</option>
+                    <option value="Fighting">Fighting</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Flying">Flying</option>
+                    <option value="Ghost">Ghost</option>
+                    <option value="Grass">Grass</option>
+                    <option value="Ground">Ground</option>
+                    <option value="Ice">Ice</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Poison">Poison</option>
+                    <option value="Psychic">Psychic</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Steel">Steel</option>
+                    <option value="Water">Water</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example" name=generation id=generation>
+                    <option selected>Select Pokemon's Generation</option>
+                    <option value="1">Generation I</option>
+                    <option value="2">Generation II</option>
+                    <option value="3">Generation III</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-danger">Create</button>
         </form>
-        <?php
-            echo "Successfully added " . " $addedPokemonName";
-        ?>
+    </div>
+    <!-- <?php
+    echo "Successfully added " . " $addedPokemonName";
+    ?> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
