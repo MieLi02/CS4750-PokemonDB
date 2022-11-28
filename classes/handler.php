@@ -4,7 +4,7 @@ require "pokemon_db.php";
 
 class Handler {
     private $command;
-    
+
     private $logger;
 
     public function __construct($command) {
@@ -67,28 +67,34 @@ class Handler {
     }
 
     private function signup() {
+        $username = 'yl2nr_a';
+        $password = 'Fall2022';
+        $host = 'mysql01.cs.virginia.edu';
+        $dbname = 'yl2nr_d';
+        $dsn = "mysql:host=$host;dbname=$dbname";
+        $db = new PDO($dsn, $username, $password);
         if (isset($_POST["email"])) {
-            $data = $db->query("select * from recipick_user where email = ?;", "s", $_POST["email"]);
+            $data = $db->query("select * from User where email = ?;", "s", $_POST["email"]);
             if ($data === false) {
                 $error_msg = "Error checking for user";
             }
-            else if ( ($_POST["email"] == "") || ($_POST["name"] == "") || ($_POST["password"] == "") ){
+            else if ( ($_POST["email"] == "") || ($_POST["password"] == "") ){
                 $error_msg = "Don't leave signup fields blank";
             }
             else if (!empty($data)) {
                 $error_msg = "Email is already in use";
             } else {
-                $insert = $this->db->query("insert into recipick_user (name, email, password, num_recipes) values (?, ?, ?, ?);", 
-                        "ssss", $_POST["name"], $_POST["email"], 
-                        password_hash($_POST["password"], PASSWORD_DEFAULT), 0);
-                $id = $this->db->query("select id from recipick_user where email = ?;", "s", $_POST["email"]);
+                $insert = $this->db->query("insert into User (Email, Password) values (?, ?);",
+                        "ss", $_POST["email"],
+                        password_hash($_POST["password"], PASSWORD_DEFAULT));
+                //$id = $this->db->query("select id from recipick_user where email = ?;", "s", $_POST["email"]);
                 if ($insert === false) {
                     $error_msg = "Error inserting user";
                 } else {
                     session_start();
-                    $_SESSION["name"] =  $_POST["name"];
+                    //$_SESSION["name"] =  $_POST["name"];
                     $_SESSION["email"] =   $_POST["email"];
-                    $_SESSION["id"] = $id[0]["id"];
+                    //$_SESSION["id"] = $id[0]["id"];
                     header("Location: ?command=home");
                 }
             }
@@ -97,7 +103,7 @@ class Handler {
     }
 
     private function search() {
-        if (isset($_POST["id"]) && !empty($_POST["id"])) {        
+        if (isset($_POST["id"]) && !empty($_POST["id"])) {
             $pokemon = getPokemonById($_POST["id"]);
         }
         elseif (isset($_POST["name"]) && !empty($_POST["name"])) {
@@ -108,7 +114,7 @@ class Handler {
             $pokemon_json = json_encode($pokemon);
         }
         include("views/search.php");
-    }  
+    }
 
     private function add() {
         if (isset($_POST["pid"]) && isset($_POST["pname"]) &&
