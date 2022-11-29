@@ -82,7 +82,7 @@ function deletePokemonById($id)
     $statement->closeCursor();
 }
 
-function updatePokemonType($id,$type)
+function updatePokemon($id, $name, $generation, $appearanceCategory, $type)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';
@@ -90,7 +90,7 @@ function updatePokemonType($id,$type)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "UPDATE Pokemon SET Type_name = '$type' WHERE Pokemon.Pid = '$id'";
+    $query = "UPDATE Pokemon SET Name = '$name', Generation = '$generation', appearance_category = '$appearanceCategory',Type_name = '$type' WHERE Pokemon.Pid = '$id'";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':type', $type);
@@ -178,7 +178,7 @@ function getPokemonByType($type)
     return $result;
 }
 
-function getPokemonSkillByIdOrName($id,$name)
+function getPokemonSkillByIdOrName($id, $name)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';
@@ -196,7 +196,7 @@ function getPokemonSkillByIdOrName($id,$name)
     return $result;
 }
 
-function getPokemonAdvantageByIdOrName($id,$name)
+function getPokemonAdvantageByIdOrName($id, $name)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';

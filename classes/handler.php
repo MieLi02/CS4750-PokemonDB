@@ -141,6 +141,11 @@ class Handler
 
     private function edit()
     {
+        if (isset($_POST["id"]) && !empty($_POST["id"])) {
+            $pokemon = getPokemonById($_POST["id"]);
+        }  else {
+            $pokemon = getPokemonById(1);
+        }
         include("views/edit.php");
     }
 
