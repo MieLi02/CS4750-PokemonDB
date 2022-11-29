@@ -123,6 +123,10 @@ class Handler
             $pokemon = getPokemonById(1);
             $pokemon_json = json_encode($pokemon);
         }
+        if (count($pokemon)==0) {
+            $pokemon = getPokemonById(1);
+            $pokemon[0]["Pid"] = -1;
+        }
         include("views/search.php");
     }
 

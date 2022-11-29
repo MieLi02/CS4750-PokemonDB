@@ -64,6 +64,24 @@
             </div>
         </div>
         <div class="col-6">
+            <?php if ($pokemon[0]["Pid"] == -1) { ?>
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="https://www.thewandcompany.com/wp-content/uploads/2020/11/hand-holding-pokeball-lit-2kx2437px-840x1024.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Sorry! Pokémon Not Found!
+                    </h5>
+                    <p class="card-text">Our database currently DOES NOT have that Pokémon!</p>
+                    <p class="card-text">No Worry! Add new Pokémon!</p>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="?command=add" class="card-link btn btn-danger">Add</a>
+                    </div>
+                </div>
+            </div>
+            <?php } else { ?>
             <div class="card mx-auto" style="width: 18rem;">
                 <?php
                 if ((int) $pokemon[0]["Pid"] == 1) {
@@ -103,6 +121,7 @@
                     </form>
                 </div>
             </div>
+            <?php } ?>
         </div>
 
 
