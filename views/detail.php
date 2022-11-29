@@ -99,6 +99,19 @@
                     </label>
                 </div>
 
+                <div class="mb-3">
+                    <label for="skills" class="form-label">Advantages: 
+                        <?php for($i = 0; $i < count($advantages); $i++) {
+                            if ($i != count($advantages)-1){
+                                echo $advantages[$i][0] . ", ";
+                            } else{
+                                echo $advantages[$i][0];
+                            }
+                        }
+                        ?>
+                    </label>
+                </div>
+
                 <?php
                     if ((int) $evolved_id == -1){
                         $evolvePic = "https://www.thewandcompany.com/wp-content/uploads/2020/11/hand-holding-pokeball-lit-2kx2437px-840x1024.jpg";
