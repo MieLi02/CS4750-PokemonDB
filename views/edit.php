@@ -46,7 +46,7 @@
         </h1>
     </div>
     <div class="container">
-        <form action="?command=edit&id=59" method="POST">
+        <form action=<?php echo "?command=edit&id=".$curPoke[0]["Pid"]?> method="POST">
             <div class="mb-3">
                 <label for="pid" class="form-label">ID</label>
                 <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter Pokemon ID"
