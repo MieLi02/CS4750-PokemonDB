@@ -307,4 +307,21 @@ function getUserPassword($email)
     $statement->closeCursor();
     return $result;
 }
+
+function addUser($email,$password)
+{
+    $passhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "INSERT INTO User VALUES ('$email','$passhash')";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':passhash', $passhash);
+    $statement->execute();
+    $statement->closeCursor();
+}
 ?>
