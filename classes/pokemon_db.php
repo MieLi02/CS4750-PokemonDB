@@ -82,7 +82,7 @@ function deletePokemonById($id)
     $statement->closeCursor();
 }
 
-function updatePokemon($id, $name, $generation, $appearanceCategory, $type)
+function updateName($id, $name)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';
@@ -90,7 +90,53 @@ function updatePokemon($id, $name, $generation, $appearanceCategory, $type)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "UPDATE Pokemon SET Name = '$name', Generation = '$generation', appearance_category = '$appearanceCategory',Type_name = '$type' WHERE Pokemon.Pid = '$id'";
+    $query = "UPDATE Pokemon SET Name = '$name' WHERE Pokemon.Pid = '$id'";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':name', $name);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function updateGen($id, $generation)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "UPDATE Pokemon SET Generation = '$generation' WHERE Pokemon.Pid = '$id'";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':generation', $generation);
+    $statement->execute();
+    $statement->closeCursor();
+}
+function updateApp($id, $appearanceCategory)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "UPDATE Pokemon SET appearance_category = '$appearanceCategory' WHERE Pokemon.Pid = '$id'";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':appearanceCategory', $appearanceCategory);
+    $statement->execute();
+    $statement->closeCursor();
+}
+function updateType($id, $type)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "UPDATE Pokemon SET Type_name = '$type' WHERE Pokemon.Pid = '$id'";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':type', $type);
@@ -276,5 +322,22 @@ function getUserPassword($email)
     $result = $statement->fetchAll();
     $statement->closeCursor();
     return $result;
+}
+
+function addUser($email,$password)
+{
+    $passhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "INSERT INTO User VALUES ('$email','$passhash')";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':passhash', $passhash);
+    $statement->execute();
+    $statement->closeCursor();
 }
 ?>
