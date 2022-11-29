@@ -111,10 +111,8 @@ class Handler
         $id = 1;
         if (isset($_POST["id"]) && !empty($_POST["id"])) {
             $pokemon = getPokemonById($_POST["id"]);
-            $id = $pokemon[0]["Pid"];
         } elseif (isset($_POST["name"]) && !empty($_POST["name"])) {
             $pokemon = getPokemonByName($_POST["name"]);
-            $id = $pokemon[0]["Pid"];
         } else {
             $pokemon = getPokemonById(1);
             $pokemon_json = json_encode($pokemon);
