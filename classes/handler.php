@@ -123,7 +123,7 @@ class Handler
             $pokemon = getPokemonById(1);
             $pokemon_json = json_encode($pokemon);
         }
-        if (count($pokemon)==0) {
+        if (count($pokemon) == 0) {
             $pokemon = getPokemonById(1);
             $pokemon[0]["Pid"] = -1;
         }
@@ -145,11 +145,17 @@ class Handler
 
     private function edit()
     {
-        if (isset($_POST["id"]) && !empty($_POST["id"])) {
-            $pokemon = getPokemonById($_POST["id"]);
-        }  else {
-            $pokemon = getPokemonById(1);
+        if (
+            isset($_POST["pid"]) && isset($_POST["pname"]) &&
+            isset($_POST["generation"]) && isset($_POST["appearance"]) &&
+            isset($_POST["type"])
+        ) {
+            updateName($_POST["pid"], $_POST["pname"]);
+            updateGen($_POST["pid"], $_POST["generation"]);
+            updateApp($_POST["pid"], $_POST["appearance"]);
+            updateType($_POST["pid"], $_POST["type"]);
         }
+        $curPoke = getPokemonById($_GET["id"]);
         include("views/edit.php");
     }
 

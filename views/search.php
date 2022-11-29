@@ -116,7 +116,7 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    <a href="?command=edit" class="card-link btn btn-info">Edit</a>
+                    <a href=<?php echo "?command=edit&id=".$pokemon[0]["Pid"]?> class="card-link btn btn-info">Edit</a>
                     <form class="d-inline" action="?command=delete" method="POST">
                         <input type="hidden" name="pid" id="pid" value=<?php echo $pokemon[0]["Pid"] ?>>
                         <button class="btn btn-danger">Delete</button>

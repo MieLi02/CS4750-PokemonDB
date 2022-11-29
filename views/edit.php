@@ -32,7 +32,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page">Edit</a>
                     </li>
-
                 </ul>
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link" href="#">User Profile</a>
@@ -42,36 +41,37 @@
     </nav>
     <br>
     <div class="container">
-        <h1>Update Information of <?php echo $pokemon[0]["Name"] ?></h1>
+        <h1>Update Information for: 
+            <?php echo $curPoke[0]["Name"] ?>
+        </h1>
     </div>
     <div class="container">
-        <form action="?command=add" method="POST">
+        <form action="?command=edit&id=59" method="POST">
             <div class="mb-3">
                 <label for="pid" class="form-label">ID</label>
                 <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter Pokemon ID"
-                    aria-describedb="idHelp">
-                <div id="idHelp" class="form-text">Each Pokemon has its unique ID!</div>
+                    aria-describedb="idHelp" value=<?php echo $curPoke[0]["Pid"] ?> readonly>
+                <div id="idHelp" class="form-text">Each Pokemon has its unique ID! You CANNOT EDIT this!</div>
             </div>
             <div class="mb-3">
                 <label for="pname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="pname" name="pname" placeholder="Enter Pokemon Name">
+                <input type="text" class="form-control" id="pname" name="pname" placeholder="Enter Pokemon Name" value=<?php echo $curPoke[0]["Name"] ?>>
             </div>
             <div class="mb-3">
                 <label for="appearance" class="form-label">Appearance</label>
                 <input type="text" class="form-control" id="appearance" name="appearance" placeholder="Enter appearance"
-                    aria-describedby="appHelp">
+                    aria-describedby="appHelp" value=<?php echo $curPoke[0]["appearance_category"] ?>>
                 <div id="appHelp" class="form-text">What species is it? Is it a Dog?</div>
             </div>
             <div class="mb-3">
                 <select class="form-select" aria-label="Default select example" name=type id=type>
-                    <option selected>Select Pokemon's Type</option>
+                    <option selected>Current Type: <?php echo $curPoke[0]["Type_name"] ?></option>
                     <option value="Bug">Bug</option>
                     <option value="Dark">Dark</option>
                     <option value="Dragon">Dragon</option>
                     <option value="Electric">Electric</option>
                     <option value="Fairy">Fairy</option>
                     <option value="Fighting">Fighting</option>
-                    <option value="Fire">Fire</option>
                     <option value="Fire">Fire</option>
                     <option value="Flying">Flying</option>
                     <option value="Ghost">Ghost</option>
@@ -88,7 +88,7 @@
             </div>
             <div class="mb-3">
                 <select class="form-select" aria-label="Default select example" name=generation id=generation>
-                    <option selected>Select Pokemon's Generation</option>
+                    <option selected>Current Generation: <?php echo $curPoke[0]["Generation"] ?></option>
                     <option value="1">Generation I</option>
                     <option value="2">Generation II</option>
                     <option value="3">Generation III</option>
