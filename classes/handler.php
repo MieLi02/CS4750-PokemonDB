@@ -91,13 +91,13 @@ class Handler
                 $insert = addUser($_POST["email"],$_POST["password"]);
                 if ($insert === false) {
                     $error_msg = "Error inserting user";
-                } //else {
-                    //session_start();
+                } else {
+                    session_start();
                     //$_SESSION["name"] =  $_POST["name"];
-                    //$_SESSION["email"] = $_POST["email"];
+                    $_SESSION["email"] = $_POST["email"];
                     //$_SESSION["id"] = $id[0]["id"];
                     header("Location: ?command=home");
-                //}
+                }
             }
         }
         include("views/login.php");
