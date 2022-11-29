@@ -37,6 +37,9 @@ class Handler
                 case "delete":
                     $this->delete();
                     break;
+                case "detail":
+                    $this->detail();
+                    break;
                 default:
                     $this->index();
                     break;
@@ -115,10 +118,13 @@ class Handler
 
     private function search()
     {
+        $id = 1;
         if (isset($_POST["id"]) && !empty($_POST["id"])) {
             $pokemon = getPokemonById($_POST["id"]);
+            $id = $pokemon[0]["Pid"];
         } elseif (isset($_POST["name"]) && !empty($_POST["name"])) {
             $pokemon = getPokemonByName($_POST["name"]);
+            $id = $pokemon[0]["Pid"];
         } else {
             $pokemon = getPokemonById(1);
             $pokemon_json = json_encode($pokemon);
@@ -162,5 +168,25 @@ class Handler
         }
         deletePokemonById($_POST["pid"]);
         include("views/search.php");
+    }
+
+    private function detail()
+    {
+        if (!isset($_GET['id'])){
+            $pokemon = getPokemonById(1);
+        } else {
+            $pokemon = getPokemonById($_GET['id']);
+        }
+        $id = $pokemon[0]["Pid"];
+        $skills = getPokemonSkillById($id);
+        $advantages = getPokemonAdvantageById($id);
+        $evolved = getPokemonEvolutionById($id);
+        $evolved_name = getPokemonEvolutionNameById($id);
+        if (count($evolved) == 0){
+            $evolved_id = -1;
+        } else{
+            $evolved_id = $evolved[0]['Pid'];
+        }
+        include("views/detail.php");
     }
 }

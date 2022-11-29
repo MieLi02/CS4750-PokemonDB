@@ -178,7 +178,7 @@ function getPokemonByType($type)
     return $result;
 }
 
-function getPokemonSkillByIdOrName($id, $name)
+function getPokemonSkillById($id)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';
@@ -186,9 +186,9 @@ function getPokemonSkillByIdOrName($id, $name)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT Pokemon.Pid, Pokemon.Name, sname AS 'Skill', Power
+    $query = "SELECT sname, Power
     FROM Pokemon NATURAL JOIN Has_Skill NATURAL JOIN Skills
-    WHERE Pokemon.Pid = '$id' OR Pokemon.Name = '$name'";
+    WHERE Pokemon.Pid = '$id'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
@@ -196,7 +196,7 @@ function getPokemonSkillByIdOrName($id, $name)
     return $result;
 }
 
-function getPokemonAdvantageByIdOrName($id, $name)
+function getPokemonAdvantageById($id)
 {
     $username = 'yl2nr_a';
     $password = 'Fall2022';
@@ -204,9 +204,9 @@ function getPokemonAdvantageByIdOrName($id, $name)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT Pokemon.Pid, Pokemon.Name, Pokemon.Type_name, Has_Advantage_Over.weak_tname AS 'Has Advantage Over'
+    $query = "SELECT  Has_Advantage_Over.weak_tname
     FROM Pokemon RIGHT JOIN Has_Advantage_Over ON Pokemon.Type_name = Has_Advantage_Over.strong_tname
-    WHERE Pokemon.Pid = '$id' OR Pokemon.Name = '$name'";
+    WHERE Pokemon.Pid = '$id'";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
@@ -222,7 +222,23 @@ function getPokemonEvolutionById($id)
     $dbname = 'yl2nr_d';
     $dsn = "mysql:host=$host;dbname=$dbname";
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT P1.Name as 'Original', P2.Name as 'Evolved' FROM Pokemon as P1, Pokemon as P2 WHERE P1.Pid = '$id' AND P2.Pid = (SELECT After_pid FROM Evolve WHERE Previous_pid = '$id')";
+    $query = "SELECT P2.Pid FROM Pokemon as P1, Pokemon as P2 WHERE P1.Pid = '$id' AND P2.Pid = (SELECT After_pid FROM Evolve WHERE Previous_pid = '$id')";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function getPokemonEvolutionNameById($id)
+{
+    $username = 'yl2nr_a';
+    $password = 'Fall2022';
+    $host = 'mysql01.cs.virginia.edu';
+    $dbname = 'yl2nr_d';
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $db = new PDO($dsn, $username, $password);
+    $query = "SELECT P2.Name FROM Pokemon as P1, Pokemon as P2 WHERE P1.Pid = '$id' AND P2.Pid = (SELECT After_pid FROM Evolve WHERE Previous_pid = '$id')";
     $statement = $db->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();

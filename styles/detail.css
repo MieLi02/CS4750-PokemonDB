@@ -1,0 +1,31 @@
+
+.left{
+    position:relative;
+    top:50px;
+    flex:1;
+    float:left;
+    width:50%;
+    padding-left:30px;
+    padding-bottom: 40px;
+    line-height: 70px;
+}
+
+.right{
+    position:relative;
+    top:20px;
+    flex:1;
+    float:left;
+    width:50%;
+    padding-left:90px;
+    padding-right:30px;
+    padding-bottom: 40px;
+}
+
+.vl {
+    border-left: 3px solid red;
+    height: 450px;
+  }
+
+.flex-container{
+    display: flex;
+}

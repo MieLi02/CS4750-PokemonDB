@@ -121,6 +121,9 @@
                         <input type="hidden" name="pid" id="pid" value=<?php echo $pokemon[0]["Pid"] ?>>
                         <button class="btn btn-danger">Delete</button>
                     </form>
+                    <?php
+                        echo "<a href='?command=detail&id=$id' class='card-link btn btn-info'>Details</a>";
+                    ?>
                 </div>
             </div>
             <?php } ?>
