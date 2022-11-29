@@ -64,7 +64,7 @@ class Handler
             } else if (($_POST["email"] == "") || ($_POST["password"] == "")) {
                 $error_msg = "Don't leave login fields blank";
             } else if (!empty($_POST["email"]) && !empty($_POST["password"])) {
-                if ($_POST["password"] == $get_password) {
+                if (password_verify($_POST["password"],$get_password)) {
                     header("Location: ?command=search");
                 } else {
                     $error_msg = "Wrong password";
@@ -78,14 +78,9 @@ class Handler
 
     private function signup()
     {
-        $username = 'yl2nr_a';
-        $password = 'Fall2022';
-        $host = 'mysql01.cs.virginia.edu';
-        $dbname = 'yl2nr_d';
-        $dsn = "mysql:host=$host;dbname=$dbname";
-        $db = new PDO($dsn, $username, $password);
         if (isset($_POST["email"])) {
-            $data = $db->query("select * from User where email = ?;", "s", $_POST["email"]);
+            $input_email = $_POST["email"];
+            $data = getUserEmail($input_email);
             if ($data === false) {
                 $error_msg = "Error checking for user";
             } else if (($_POST["email"] == "") || ($_POST["password"] == "")) {
@@ -93,24 +88,19 @@ class Handler
             } else if (!empty($data)) {
                 $error_msg = "Email is already in use";
             } else {
-                $insert = $this->db->query(
-                    "insert into User (Email, Password) values (?, ?);",
-                    "ss", $_POST["email"],
-                    password_hash($_POST["password"], PASSWORD_DEFAULT)
-                );
-                //$id = $this->db->query("select id from recipick_user where email = ?;", "s", $_POST["email"]);
+                $insert = addUser($_POST["email"],$_POST["password"]);
                 if ($insert === false) {
                     $error_msg = "Error inserting user";
-                } else {
-                    session_start();
+                } //else {
+                    //session_start();
                     //$_SESSION["name"] =  $_POST["name"];
-                    $_SESSION["email"] = $_POST["email"];
+                    //$_SESSION["email"] = $_POST["email"];
                     //$_SESSION["id"] = $id[0]["id"];
                     header("Location: ?command=home");
-                }
+                //}
             }
         }
-        include("login.php");
+        include("views/login.php");
     }
 
     private function search()
