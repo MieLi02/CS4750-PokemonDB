@@ -44,9 +44,9 @@
 
 <body>
     <br>
-    <div class="row">
-        <div class="col-6">
-            <div class="container">
+    <div class="row gy-5">
+        <div class="col-12">
+            <div class="container text-center">
                 <h1>Search Pokémon from Our Database!</h1>
             </div>
             <div class="container">
@@ -63,7 +63,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12">
             <?php if ($pokemon[0]["Pid"] == -1) { ?>
             <div class="card mx-auto" style="width: 18rem;">
                 <img src="https://www.thewandcompany.com/wp-content/uploads/2020/11/hand-holding-pokeball-lit-2kx2437px-840x1024.jpg"
@@ -73,7 +73,7 @@
                         Sorry! Pokémon Not Found!
                     </h5>
                     <p class="card-text">Our database currently DOES NOT have that Pokémon!</p>
-                    <p class="card-text">No Worry! Add new Pokémon!</p>
+                    <p class="card-text">No Worry! Add a new Pokémon!</p>
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
@@ -90,6 +90,8 @@
                     $pokemonPicNum = '00' . $pokemon[0]["Pid"];
                 } elseif ((int) $pokemon[0]["Pid"] > 9 and (int) $pokemon[0]["Pid"] < 100) {
                     $pokemonPicNum = '0' . $pokemon[0]["Pid"];
+                } else {
+                    $pokemonPicNum = $pokemon[0]["Pid"];
                 }
                 $pokemonPic = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' . $pokemonPicNum . ".png";
                 ?>
